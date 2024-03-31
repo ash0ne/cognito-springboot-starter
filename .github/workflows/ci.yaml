@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -27,7 +27,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build and Test with Gradle
-        run: ./gradlew clean build
+        run: ./gradlew clean build --stacktrace
 
       - name: Upload test results
         uses: actions/upload-artifact@v2
