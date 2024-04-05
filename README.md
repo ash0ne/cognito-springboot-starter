@@ -16,15 +16,18 @@ but can be used with any frontend of your choice.
 - Before using this application, it's necessary to set up
   an [AWS Cognito Identity Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/getting-started-with-identity-pools.html)
   and have a User and a User Group created . This process is pretty straightforward
+  
   > Note: The default configuration on this app assumes that you have created a Cognito Identity Pool without an App
-  Client Secret since this is the most common pattern used for oAuth apps with user-facing frontends. If you instead use
-  an identity pool that has a client secret, remove the
+  Client Secret since this is the most common pattern used for oAuth apps with user-facing frontends.
+  >
+  > If you instead use an identity pool that has a client secret, remove the
   line `spring.security.oauth2.client.registration.cognito.client-authentication-method=none`
   from `application.properties` and add your Cognito Client Secret in a new config field as new
   key `spring.security.oauth2.client.registration.cognito.client-id=<cognito_client_secret>`
-  Refer
-  to [this Stack Overflow thread](https://stackoverflow.com/questions/47916034/what-is-a-cognito-app-client-secret) for
+  >
+  > Refer to [this Stack Overflow thread](https://stackoverflow.com/questions/47916034/what-is-a-cognito-app-client-secret) for
   more information.
+  
 - Make sure you have the Java 21 jdk and docker installed.
 - Checkout the project and build it by `./gradlew clean build` from the project directory.
 - Ensure Docker is installed and then run `docker-compose up -d` in the `local-run` directory to get a local Postgres
