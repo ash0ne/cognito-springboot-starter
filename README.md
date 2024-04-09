@@ -1,5 +1,7 @@
 # Cognito Spring Boot Starter
 
+![CI Status Badge](https://github.com/ash0ne/cognito-springboot-starter/actions/workflows/ci.yaml/badge.svg)
+
 - [Overview](#overview)
 - [Getting Started](#getting-started)
 - [Settings](#settings)
