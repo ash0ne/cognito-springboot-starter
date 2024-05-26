@@ -4,6 +4,7 @@ import com.ashone.cognitostarter.dto.PersonDTO
 import com.ashone.cognitostarter.exception.ConflictException
 import com.ashone.cognitostarter.repository.PersonRepository
 import com.ashone.cognitostarter.repository.entity.Person
+import com.ashone.cognitostarter.repository.specification.PersonSpecification
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -39,20 +40,20 @@ class PersonService(val personRepository: PersonRepository) {
     }
 
     /**
-     * Retrieves a paginated list of all persons.
+     * Retrieves a paginated list of all persons and searches by firstName and/or mobile if provided.
      *
      * @param page The page number (default: 0).
      * @param size The page size (default: 20).
      * @return A paginated list of persons.
      */
-    fun findAllPaginated(page: Int?, size: Int?): Page<Person> {
-        val sort = Sort.by(Sort.Direction.DESC, "createTime") // Default sort
-        return personRepository.findAll(
-            PageRequest.of(
-                (page ?: 0).coerceAtLeast(0),
-                (size ?: 20).coerceAtLeast(1), sort
-            )
+    fun findAllPaginated(name: String?, phone: String?, page: Int?, size: Int?): Page<Person> {
+        val pageable = PageRequest.of(
+            (page ?: 0).coerceAtLeast(0),
+            (size ?: 20).coerceAtLeast(1),
+            Sort.by(Sort.Direction.DESC, "createTime")
         )
+        val specification = PersonSpecification.hasNameOrPhone(name, phone)
+        return personRepository.findAll(specification, pageable)
     }
 
     /**
