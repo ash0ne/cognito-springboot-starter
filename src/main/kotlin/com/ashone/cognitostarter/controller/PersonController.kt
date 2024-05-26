@@ -40,7 +40,8 @@ class PersonController
     }
 
     /**
-     * Retrieves all Person entities with pagination support.
+     * Retrieves all Person entities with pagination support and optionally,
+     * can search by firstName(name) and phoneNumber(phone).
      *
      * @param page The page number (optional).
      * @param size The page size (optional).
@@ -48,10 +49,12 @@ class PersonController
      */
     @GetMapping("/persons")
     fun getAllPersons(
+        @RequestParam(required = false) name: String?,
+        @RequestParam(required = false) phone: String?,
         @RequestParam(required = false) @Min(0) page: Int?,
         @RequestParam(required = false) @Min(1) size: Int?
     ): Page<Person> {
-        return personService.findAllPaginated(page, size)
+        return personService.findAllPaginated(name, phone, page, size)
     }
 
     /**
