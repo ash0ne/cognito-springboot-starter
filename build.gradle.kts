@@ -31,7 +31,7 @@ dependencies {
     implementation("com.auth0:jwks-rsa:0.22.1")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("org.postgresql:postgresql:42.7.4")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
