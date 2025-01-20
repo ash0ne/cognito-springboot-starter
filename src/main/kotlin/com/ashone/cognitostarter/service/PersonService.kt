@@ -17,7 +17,7 @@ import java.util.*
  * Service class to perform operations related to Person entity.
  */
 @Service
-class PersonService(val personRepository: PersonRepository) {
+class PersonService(private val personRepository: PersonRepository) {
 
     /**
      * Creates a new person.
@@ -35,7 +35,7 @@ class PersonService(val personRepository: PersonRepository) {
                 )
             )
         } catch (e: DataIntegrityViolationException) {
-            throw ConflictException("Error : {${e.mostSpecificCause.message}}")
+            throw ConflictException("Error : Possibly duplicate data for phone_number")
         }
     }
 
@@ -85,6 +85,8 @@ class PersonService(val personRepository: PersonRepository) {
             return personRepository.save(personToUpdate)
         } catch (e: JpaObjectRetrievalFailureException) {
             return null
+        } catch (e: DataIntegrityViolationException) {
+            throw ConflictException("Error : Possibly duplicate data for phone_number")
         }
     }
 
