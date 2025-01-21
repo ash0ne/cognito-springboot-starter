@@ -68,6 +68,14 @@ class SecurityConfig {
             ).build()
     }
 
+    @Bean
+    @ConditionalOnProperty(name = ["cognito.client-behaviour-enabled"], havingValue = "true")
+    fun filterChainOn(http: HttpSecurity): SecurityFilterChain {
+        return http.csrf { obj: CsrfConfigurer<HttpSecurity> -> obj.disable() }
+            .cors(Customizer.withDefaults<CorsConfigurer<HttpSecurity>>())
+            .securityMatcher("/api/**").build()
+    }
+
     /**
      * Method to configure a CORS filter.
      *
