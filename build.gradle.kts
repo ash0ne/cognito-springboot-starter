@@ -6,7 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.1.20"
     kotlin("plugin.spring") version "2.1.21"
-    kotlin("plugin.noarg") version "2.1.20"
+    kotlin("plugin.noarg") version "2.1.21"
 }
 
 group = "com.ashone"
