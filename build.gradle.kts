@@ -6,7 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.1.20"
     kotlin("plugin.spring") version "2.1.21"
-    kotlin("plugin.noarg") version "2.1.20"
+    kotlin("plugin.noarg") version "2.2.10"
 }
 
 group = "com.ashone"
@@ -37,9 +37,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.testcontainers:testcontainers:1.20.4")
+    testImplementation("org.testcontainers:testcontainers:1.21.3")
     testImplementation("org.testcontainers:junit-jupiter:1.21.3")
     testImplementation("org.testcontainers:postgresql:1.21.3")
+    testImplementation("org.testcontainers:testcontainers:1.21.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.20.6")
+    testImplementation("org.testcontainers:postgresql:1.20.6")
 }
 
 noArg {
